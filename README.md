@@ -2,7 +2,7 @@
 
 ## Description
 
-Using d3force to see if I can make a reasonable family tree layout.
+Using d3force (<https://github.com/d3/d3-force>) to see if I can make a reasonable family tree layout.
 
 ## To do
 

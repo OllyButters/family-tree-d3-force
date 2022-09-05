@@ -22,6 +22,12 @@
       {"id": 26, "name": "P.P. G.grandfather", "dob": "1900"},
       {"id": 27, "name": "P.P. G.grandmother", "dob": "1900"},
 
+      {"id": 30, "name": "P.P.P. G.grandfather", "dob": "1870"},
+      {"id": 31, "name": "P.P.P. G.grandmother", "dob": "1870"},
+
+      {"id": 32, "name": "P.P.M. G.grandfather", "dob": "1870"},
+      {"id": 33, "name": "P.P.M. G.grandmother", "dob": "1870"},
+
       {"id": 28, "name": "P.M. G.grandfather", "dob": "1900"},
       {"id": 29, "name": "P.M. G.grandmother", "dob": "1900"},
 
@@ -58,6 +64,12 @@
       {"source": 6, "target": 8},
       {"source": 8, "target": 11},
       {"source": 7, "target": 6},
+
+      {"source": 30, "target": 26},
+      {"source": 31, "target": 26},
+
+      {"source": 32, "target": 27},
+      {"source": 33, "target": 27},
 
 
       {"source": 13, "target": 14},
