@@ -1,0 +1,103 @@
+{
+    "nodes": [
+      {"id": 0, "name": "me", "dob": "1980"},
+      {"id": 12, "name": "My partner", "dob": "1980"},
+
+      {"id": 1, "name": "sister", "dob": "1980"},
+      {"id": 2, "name": "Sister's partner", "dob": "1980"},
+      {"id": 3, "name": "niece", "dob": "2000"},
+      
+      {"id": 4, "name": "Mother", "dob": "1960"},
+      {"id": 5, "name": "Father", "dob": "1950"},
+      
+      {"id": 6, "name": "P. grandfather", "dob": "1920"},
+      {"id": 7, "name": "P. grandmother", "dob": "1930"},
+      {"id": 8, "name": "P. aunt 1", "dob": "1940"},
+      {"id": 11, "name": "P. uncle 1", "dob": "1950"},
+
+      {"id": 23, "name": "P. cousin 1", "dob": "1970"},
+      {"id": 24, "name": "P. cousin 2", "dob": "1980"},
+      {"id": 25, "name": "P. cousin 3", "dob": "1990"},
+
+      {"id": 26, "name": "P.P. G.grandfather", "dob": "1900"},
+      {"id": 27, "name": "P.P. G.grandmother", "dob": "1900"},
+
+      {"id": 28, "name": "P.M. G.grandfather", "dob": "1900"},
+      {"id": 29, "name": "P.M. G.grandmother", "dob": "1900"},
+
+      {"id": 13, "name": "M. grandfather", "dob": "1920"},
+      {"id": 14, "name": "M. grandmother", "dob": "1930"},
+
+      {"id": 9, "name": "M. aunt 1", "dob": "1950"},
+      {"id": 10, "name": "M. aunt 2", "dob": "1940"},
+      {"id": 15, "name": "M. aunt 3", "dob": "1950"},
+      {"id": 16, "name": "M. uncle 1", "dob": "1940"},
+      {"id": 17, "name": "M. uncle 2", "dob": "1960"},
+
+      {"id": 18, "name": "M. uncle 1 (mar)", "dob": "1950"},
+      {"id": 19, "name": "M. uncle 2 (mar)", "dob": "1940"},
+      {"id": 20, "name": "M. uncle 3 (mar)", "dob": "1950"},
+      {"id": 21, "name": "M. aunt 1 (mar)", "dob": "1940"},
+      {"id": 22, "name": "M. aunt 2 (mar)", "dob": "1960"}
+
+
+    ],
+    "links": [
+      {"source": 0, "target": 4},
+      {"source": 0, "target": 5},
+      {"source": 1, "target": 4},
+      {"source": 1, "target": 5},
+      {"source": 0, "target": 12},
+      {"source": 1, "target": 2},
+      {"source": 1, "target": 3},
+      {"source": 2, "target": 3},
+      {"source": 5, "target": 4},
+      {"source": 5, "target": 6},
+      {"source": 5, "target": 7},
+      {"source": 7, "target": 8},
+      {"source": 6, "target": 8},
+      {"source": 8, "target": 11},
+      {"source": 7, "target": 6},
+
+
+      {"source": 13, "target": 14},
+
+      {"source": 14, "target": 9},
+      {"source": 14, "target": 10},
+      {"source": 14, "target": 15},
+      {"source": 14, "target": 16},
+      {"source": 14, "target": 17},
+
+      {"source": 13, "target": 9},
+      {"source": 13, "target": 10},
+      {"source": 13, "target": 15},
+      {"source": 13, "target": 16},
+      {"source": 13, "target": 17},
+
+      {"source": 4, "target": 13},
+      {"source": 4, "target": 14},
+
+      {"source": 9, "target": 18},
+      {"source": 10, "target": 19},
+      {"source": 15, "target": 20},
+      {"source": 16, "target": 21},
+      {"source": 17, "target": 22},
+
+      {"source": 8, "target": 23},
+      {"source": 8, "target": 24},
+      {"source": 8, "target": 25},
+
+      {"source": 11, "target": 23},
+      {"source": 11, "target": 24},
+      {"source": 11, "target": 25},
+
+      {"source": 6, "target": 26},
+      {"source": 6, "target": 27},
+
+      {"source": 7, "target": 28},
+      {"source": 7, "target": 29}
+
+
+    ]
+  }
+  
