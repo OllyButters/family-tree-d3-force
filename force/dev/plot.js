@@ -70,24 +70,35 @@ d3.json("family.json", function(error, familyTreeData) {
     
     //////////////////////////////
     // Attach the data to the DOM
-    var node = svg.append("g")
-        .attr("class", "nodes")
-        .selectAll("circle")
-        .data(familyTreeData.nodes)
-        .enter().append("circle")
-        .attr("r", 5)
-        .call(d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended));
-
 
     var link = svg.append("g")
         .attr("class", "links")
         .selectAll("line")
         .data(familyTreeData.links)
-        .enter().append("line");
-    
+        .enter().append("line")
+        .attr("stroke", function(d) { 
+            if(d.relationship == "married"){
+                return "red"
+            } 
+            else {
+                return "green"
+            }; 
+        });
+
+    // Do nodes after links so they are on top.
+    var node = svg.append("g")
+    .attr("class", "nodes")
+    .selectAll("circle")
+    .data(familyTreeData.nodes)
+    .enter().append("circle")
+    .attr("r", 5)
+    .call(d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
+
+
+
     // Add a title to each node
     node.append("title")
         .text(function(d) { return d.id.toString().concat(" ", d.name, " ", d.dob); });

@@ -61,19 +61,19 @@
       {"source": 0, "target": 5},
       {"source": 1, "target": 4},
       {"source": 1, "target": 5},
-      {"source": 0, "target": 12},
-      {"source": 1, "target": 2},
+      {"source": 0, "target": 12, "relationship" : "married"},
+      {"source": 1, "target": 2, "relationship" : "married"},
       {"source": 1, "target": 3},
       {"source": 2, "target": 3},
-      {"source": 5, "target": 4},
+      {"source": 5, "target": 4, "relationship" : "married"},
       {"source": 5, "target": 6},
       {"source": 5, "target": 7},
       {"source": 7, "target": 8},
       {"source": 6, "target": 8},
-      {"source": 8, "target": 11},
-      {"source": 7, "target": 6},
+      {"source": 8, "target": 11, "relationship" : "married"},
+      {"source": 7, "target": 6, "relationship" : "married"},
 
-      {"source": 26, "target": 27},
+      {"source": 26, "target": 27, "relationship" : "married"},
 
       {"source": 30, "target": 26},
       {"source": 31, "target": 26},
@@ -81,7 +81,7 @@
       {"source": 32, "target": 27},
       {"source": 33, "target": 27},
 
-      {"source": 28, "target": 29},
+      {"source": 28, "target": 29, "relationship" : "married"},
 
       {"source": 34, "target": 28},
       {"source": 35, "target": 28},
@@ -89,7 +89,7 @@
       {"source": 36, "target": 29},
       {"source": 37, "target": 29},
 
-      {"source": 13, "target": 14},
+      {"source": 13, "target": 14, "relationship" : "married"},
 
       {"source": 14, "target": 9},
       {"source": 14, "target": 10},
@@ -106,11 +106,11 @@
       {"source": 4, "target": 13},
       {"source": 4, "target": 14},
 
-      {"source": 9, "target": 18},
-      {"source": 10, "target": 19},
-      {"source": 15, "target": 20},
-      {"source": 16, "target": 21},
-      {"source": 17, "target": 22},
+      {"source": 9, "target": 18, "relationship" : "married"},
+      {"source": 10, "target": 19, "relationship" : "married"},
+      {"source": 15, "target": 20, "relationship" : "married"},
+      {"source": 16, "target": 21, "relationship" : "married"},
+      {"source": 17, "target": 22, "relationship" : "married"},
 
       {"source": 8, "target": 23},
       {"source": 8, "target": 24},
