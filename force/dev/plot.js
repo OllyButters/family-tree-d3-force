@@ -3,6 +3,17 @@ var svg = d3.select("svg"),
     width = svg.attr("width"),
     height = svg.attr("height");
 
+
+// Add horizontal lines to represent the year
+let scale = d3.scaleLinear().domain([1800, 2000]).range([0, 1000]);
+
+let axis = d3.axisLeft(scale)
+    .tickSize(1500);
+
+d3.select('svg g.axis')
+    .call(axis);
+
+
 // Set up the forces in the simulation
 var simulation = d3.forceSimulation();
 
@@ -13,9 +24,10 @@ d3.json("family.json", function(error, familyTreeData) {
     console.log(familyTreeData);
 
     // Do some data pre-processing
-    // Add a new property to each node, which is the scaled dob.
-
-
+    // Add a fy value to each node to force it to stay at that y position
+    for (var i = 0; i < familyTreeData["nodes"].length; i++) {
+        familyTreeData["nodes"][i]["fy"] = ((familyTreeData["nodes"][i]["dob"]-1800)/200)*height;
+    }
 
     // Set up the forces in the simulation
     //var simulation = d3.forceSimulation()
@@ -23,21 +35,28 @@ d3.json("family.json", function(error, familyTreeData) {
         .force("link", d3.forceLink().id(function(d) { return d.id; }))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2))
+        //.force("center", d3.forceCenter())
         //.force("forceY", d3.forceY(function(d) { return d.dob; }));   // Just use the dob
-        .force("forceY", d3.forceY(function(d) { return ((d.dob-1800)/200)*height/2.0; }))  // Scale the dob
-        //.force("forceY", d3.forceY());
+        //.force("forceY", d3.forceY(function(d) { return ((d.dob-1800)/200)*height; }))  // Scale the dob
+        //.force("forceX", d3.forceX().x(width/2))  // Try to get the nodes to the middle of the screen
+        //.force("forceY", d3.forceY().y(function(d) { return ((d.dob-1800)/200)*height; }))
         .on('tick', ticked);
 
     //////////////////////////////
     // Tweak the forces 
+    //simulation.force("forceX")
+    //    .strength(0.02);
+
+
     // Set this as the max value to ensure it happens.
-    simulation.force("forceY")
-        .strength(1)
+    //simulation.force("forceY")
+    //    .strength(1);
+        //.y(function(d) { return ((d.dob-1800)/200)*height; });
 
     // Negative so repulsive.
     simulation.force("charge")
-        .strength(-200)
-        //.distanceMax(100) // Max distance the repulsive force is applied.
+        .strength(-500)
+        .distanceMax(500); // Max distance the repulsive force is applied.
 
     //////////////////////////////
     // Add the data
@@ -94,17 +113,17 @@ d3.json("family.json", function(error, familyTreeData) {
 function dragstarted(d) {
     if (!d3.event.active) simulation.alphaTarget(0.3).restart();
     d.fx = d.x;
-    d.fy = d.y;
+    //d.fy = d.y;
 }
 
 function dragged(d) {
     d.fx = d3.event.x;
-    d.fy = d3.event.y;
+    //d.fy = d3.event.y;
 }
 
 function dragended(d) {
     if (!d3.event.active) simulation.alphaTarget(0);
     d.fx = null;
-    d.fy = null;
+    //d.fy = null;
 }
 
