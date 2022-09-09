@@ -23,6 +23,25 @@ d3.json("family.json", function(error, familyTreeData) {
     if (error) throw error;  
     console.log(familyTreeData);
 
+
+   // Build a list of the node ids which join the parents to the children
+   // The child is always the source, the parent is always the target.
+   var parents = {};
+   for (var i = 0; i < familyTreeData["links"].length; i++) {
+        if (typeof parents[familyTreeData["links"][i]["source"]] == 'undefined') {
+            parents[familyTreeData["links"][i]["source"]] = {};
+        }
+        parents[familyTreeData["links"][i]["source"]]["child"]  = familyTreeData["links"][i]["source"];
+        if (familyTreeData["links"][i]["relationship"] == "mother") {
+            parents[familyTreeData["links"][i]["source"]]["mother"] = familyTreeData["links"][i]["target"];
+        }
+        if (familyTreeData["links"][i]["relationship"] == "father") {
+            parents[familyTreeData["links"][i]["source"]]["father"] = familyTreeData["links"][i]["target"];
+        }
+
+   }
+   console.log(parents);
+
     // Do some data pre-processing
     // Add a fy value to each node to force it to stay at that y position
     for (var i = 0; i < familyTreeData["nodes"].length; i++) {
@@ -81,7 +100,7 @@ d3.json("family.json", function(error, familyTreeData) {
                 return "red"
             } 
             else {
-                return "green"
+                return "light grey"
             }; 
         });
 
@@ -97,25 +116,51 @@ d3.json("family.json", function(error, familyTreeData) {
         .on("drag", dragged)
         .on("end", dragended));
 
-
-
     // Add a title to each node
     node.append("title")
         .text(function(d) { return d.id.toString().concat(" ", d.name, " ", d.dob); });
   
+
+    var link2 = svg.append("g")
+    .attr("class", "links")
+    .selectAll("line")
+    .data(familyTreeData.links)
+    .enter().append("line")
+    .attr("stroke", "black");
+
+    
     console.log(node)
 
     // Function called on each tick to redraw the nodes and links
     function ticked() {
+
+        // Draw the people
+        node
+            .attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; });    
+
+
+        // Draw the marriage lines and the parents lines (these are hidden as the link2 lines are drawn from the middle of the marriage line instead)
         link
             .attr("x1", function(d) { return d.source.x; })
             .attr("y1", function(d) { return d.source.y; })
             .attr("x2", function(d) { return d.target.x; })
             .attr("y2", function(d) { return d.target.y; });
-    
-        node
-            .attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });    
+
+        // Draw lines from the child to a line between the parents. These are not used in the simulation to keep the nodes in place.
+        link2
+            .attr("x1", function(d) { if(d.relationship == "mother") { return d.source.x;} })
+            .attr("y1", function(d) { if(d.relationship == "mother") { return d.source.y;} })
+            .attr("x2", function(d) {
+                if(d.relationship == "mother") { 
+                return d.target.x + (familyTreeData["nodes"].find(id => id.id == parents[d.source.id]["father"]).x - d.target.x)/2;
+                }
+            })
+            .attr("y2", function(d) { 
+                if(d.relationship == "mother") { 
+                return d.target.y + (familyTreeData["nodes"].find(id => id.id == parents[d.source.id]["father"]).y - d.target.y)/2;
+                }
+            });    
     }
     
 });
